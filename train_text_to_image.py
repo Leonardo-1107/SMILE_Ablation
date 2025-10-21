@@ -1112,8 +1112,8 @@ def main():
                 pass    # definetely lack of registration
             
         dataset["train"] = data_list
-        if accelerator.is_local_main_process:
-            print(f"\033[32mFound {len(dataset['train'])} patient CT for training...\033[0m")
+        # if accelerator.is_local_main_process:
+        #     print(f"\033[32mFound {len(dataset['train'])} patient CT for training...\033[0m")
 
 
     train_transforms = A.Compose([

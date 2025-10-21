@@ -8,14 +8,14 @@ export SD_MODEL_NAME="stable-diffusion-v1-5/stable-diffusion-v1-5"
 export FT_VAE_NAME="./autoencoder/vae"
 export TRAINED_UNET_NAME="./diffusion"
 export SEG_MODEL_NAME="./segmenter/nnUNetTrainer__nnUNetResEncUNetLPlans__2d"
-export CLS_MODEL_NAME="/classifier/monai_cls.pth" 
+export CLS_MODEL_NAME="./classifier/monai_cls.pth" 
 
 # Temporary path with soft link
 export TRAIN_DATA_DIR="./Dataset905" 
 export TRAIN_DATA_SHAPE_EXCEL_DIR="./dataset_xinze2/step3-shapes-filtered.csv"
 
 # output location
-export OUTPUT_DIR="./logs/Ablation_without_Seg_Loss"
+export OUTPUT_DIR="./logs/Exp1_3"
 
 # without Segmentation Mask loss
 accelerate launch --mixed_precision="no" --num_processes=1 train_text_to_image.py \

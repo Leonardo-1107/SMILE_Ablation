@@ -16,7 +16,7 @@ export TRAIN_DATA_DIR="./Dataset905"
 export TRAIN_DATA_SHAPE_EXCEL_DIR="./dataset_xinze2/step3-shapes-filtered.csv"
 
 # output location
-export OUTPUT_DIR="./logs/Exp1_1"
+export OUTPUT_DIR="./logs/Exp2_25"
 
 # without classifier loss
 accelerate launch --mixed_precision="no" --num_processes=1 train_text_to_image.py \
@@ -44,10 +44,10 @@ accelerate launch --mixed_precision="no" --num_processes=1 train_text_to_image.p
   --warmup_end_add_cls=10000 \
   --warmup_end_add_cls_seg_hu=15000 \
   --warmup_end_add_cycle=80000 \
-  --uc_area_loss_weight=1.0 \
-  --cls_loss_weight=0 \
+  --uc_area_loss_weight=0 \
+  --cls_loss_weight=1e-3 \
   --seg_loss_weight=1e-3 \
-  --hu_loss_weight=1e-2 \
+  --hu_loss_weight=0 \
   --cycle_loss_weight=10.0 \
   --skip_validation \
 
