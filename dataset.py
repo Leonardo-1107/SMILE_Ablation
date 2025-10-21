@@ -269,7 +269,7 @@ class ReconCTDataset(Dataset):
         
         except:
             # add protection for broken CT
-            print("Bad CT, skipping ...")
+            # print("Bad CT, skipping ...")
             return None        
 
         cond_ct_orginal = cond_ct_slice.copy()
