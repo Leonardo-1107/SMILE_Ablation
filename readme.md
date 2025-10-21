@@ -12,7 +12,7 @@ Kuma:
     📧：jliu452@jh.edu
 ```
 ## Hardware requirements
-* local storage > 100 GB
+* local storage > 200 GB
 * GPU VARM > 50 GB, A100 / H100 prefered
 
 
