@@ -13,7 +13,7 @@ Kuma:
 ```
 ## Hardware requirements
 * local storage > 200 GB
-* GPU VARM > 50 GB, A100 / H100 prefered
+* GPU VARM > 50 GB, A100 / H100 preferred
 
 
 # Quick start
