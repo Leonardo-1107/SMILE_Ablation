@@ -3,3 +3,4 @@ autoencoder
 diffusion
 classifier
 segmenter
+__pycache__

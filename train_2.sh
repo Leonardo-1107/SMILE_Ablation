@@ -26,7 +26,6 @@ accelerate launch --mixed_precision="no" --num_processes=1 train_text_to_image.p
   --cls_model_path=$CLS_MODEL_NAME \
   --train_data_dir=$TRAIN_DATA_DIR \
   --dataset_shape_file=$TRAIN_DATA_SHAPE_EXCEL_DIR \
-  --init_global_step=$INIT_STEP \
   --output_dir=$OUTPUT_DIR \
   --vae_loss="l1" \
   --resolution=512 \
@@ -37,11 +36,10 @@ accelerate launch --mixed_precision="no" --num_processes=1 train_text_to_image.p
   --learning_rate=1e-05 \
   --max_grad_norm=1 \
   --lr_scheduler="constant" \
-  --report_to=wandb \
   --validation_steps=1000 \
   --checkpointing_steps=10000 \
   --checkpoints_total_limit=3 \
-  --warmup_end_df_only=1 \
+  --warmup_end_df_only=2000 \
   --warmup_end_add_cls=10000 \
   --warmup_end_add_cls_seg_hu=15000 \
   --warmup_end_add_cycle=80000 \

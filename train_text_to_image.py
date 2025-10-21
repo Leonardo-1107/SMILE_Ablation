@@ -77,10 +77,6 @@ from skimage.metrics import mean_squared_error, structural_similarity, peak_sign
 from medpy.metric import binary
 
 
-if is_wandb_available():
-    import wandb
-    wandb.login(key='2dea7d7d8dc5136f3c45be9bd98c3710e2932ace')
-
 from utils import hu_correlation, center_crop
 
 from utils_loss import get_segmentation, get_classification, step3_loss, step4_loss, step5_loss, step6_loss
@@ -765,7 +761,7 @@ def parse_args():
         type=int,
         default=25,
     )     
-    parser.add_argument("--skip_validation", action=store_true)
+    parser.add_argument("--skip_validation", action="store_true")
     parser.add_argument("--init_global_step", type=int)
     parser.add_argument("--use_gt_mask_directly", action="store_true", help="whether to use gt mask directly")
     parser.add_argument("--uc_area_loss_weight", type=float, default=1.0, help="unchanged area (air, bone) loss weight") 
@@ -816,7 +812,6 @@ def main():
     accelerator = Accelerator(
         gradient_accumulation_steps=args.gradient_accumulation_steps,
         mixed_precision=args.mixed_precision,
-        log_with=args.report_to,
         project_config=accelerator_project_config,
     )
 
