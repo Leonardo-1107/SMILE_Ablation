@@ -13,22 +13,49 @@ Kuma:
 ```
 ## Hardware requirements
 * local storage > 100 GB
-* GPU VARM > 50 GB
+* GPU VARM > 50 GB, A100 / H100 prefered
 
 
 # Quick start
+
+**Experiment 1**
+To delete the specially designed loss, respectively. 5 experiments in total.
 ```
 conda activate smile
 bash train_x.sh
 
 x for:
-    train_1.sh  -> without the phase classification loss
-    train_2.sh  -> without the organ-wise HU loss
-    train_3.sh  -> without the segmentation mask loss
-    train_4.sh  -> without the cycle consistency loss
-    train_5.sh  -> without the boundary loss
+    train_1.sh  -> without the phase classification loss (clinical)
+    train_2.sh  -> without the organ-wise HU loss (clinial)
+    train_3.sh  -> without the segmentation mask loss (structure)
+    train_4.sh  -> without the cycle consistency loss (intensity)
+    train_5.sh  -> without the boundary loss (clinical)
 ```
 
+**Experiment 2**
+Delete the grouped 2-3 losses at one time, 11 experiment in total.
+
+```
+conda activate smile
+bash train_xx.sh
+
+xx for:
+
+    train_12.sh  -> without the phase classification loss + organ-wise HU loss 
+    train_15.sh  -> without the phase classification loss + boundary loss
+    train_25.sh  -> without the organ-wise HU loss + boundary loss
+    train_125.sh -> without the phase classification loss + organ-wise HU loss + boundary loss
+
+    train_13.sh  -> without the phase classification loss + segmentation mask loss
+    train_23.sh  -> without the organ-wise HU loss + segmentation mask loss
+    train_53.sh  -> without the boundary loss + segmentation loss
+
+    train_14.sh  -> without the phase classification loss + cycle consistency loss
+    train_24.sh  -> without the organ-wise HU loss + cycle
+    train_54.sh  -> without the boundary + cycle
+    
+    train_34.sh  -> without the segmentation mask loss + cycle consistency loss 
+```
 ## Create environment
 ```
 conda create -n smile python=3.11
