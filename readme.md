@@ -4,7 +4,19 @@ This repository contains the ablation study for the SMILE system, a CT enhanceme
 
 Here, we systematically remove specific components of the loss function to evaluate their individual contributions to overall translation quality and diagnostic performance.
 
-## Quick start
+contact:
+```
+Kuma:
+
+    ☎️：+1 4103250656
+    📧：jliu452@jh.edu
+```
+## Hardware requirements
+* local storage > 100 GB
+* GPU VARM > 50 GB
+
+
+# Quick start
 ```
 conda activate smile
 bash train_x.sh
@@ -14,6 +26,7 @@ x for:
     train_2.sh  -> without the organ-wise HU loss
     train_3.sh  -> without the segmentation mask loss
     train_4.sh  -> without the cycle consistency loss
+    train_5.sh  -> without the boundary loss
 ```
 
 ## Create environment
@@ -45,7 +58,7 @@ huggingface-cli download MitakaKuma/SMILE --include="classifier/*" --local-dir="
 ```
 
 
-## Download dataset (Dataset905)
+## Download dataset (Dataset905) *(~ 38GB)*
 ```
 huggingface-cli download MitakaKuma/Dataset905 --repo-type dataset --include "Dataset905.zip" --local-dir "./"
 ```
