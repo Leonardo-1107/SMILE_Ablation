@@ -16,7 +16,7 @@ export TRAIN_DATA_DIR="./Dataset905"
 export TRAIN_DATA_SHAPE_EXCEL_DIR="./dataset_xinze2/step3-shapes-filtered.csv"
 
 # output location
-export OUTPUT_DIR="./logs/Exp2_53"
+export OUTPUT_DIR="./logs/Exp2_35"
 
 # without classifier loss
 accelerate launch --mixed_precision="no" --num_processes=1 train_text_to_image.py \

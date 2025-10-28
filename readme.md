@@ -18,6 +18,22 @@ Kuma:
 
 # Quick start
 
+
+## ⚠️special parameter in `train.sh` example:
+
+```bash
+# Output location
+export OUTPUT_DIR="./logs/Exp1_1"   # Each experiment should have a unique folder name
+
+# Resume from a previous checkpoint
+--resume_from_checkpoint=$CHECKPOINT_DIR \
+
+# (Optional) Start from a specific step
+--init_global_step=$INIT_STEP \
+```
+<mark>Important:</mark> If `--init_global_step` is not set, the script will automatically continue from the step recorded in the checkpoint.
+For example, if you resume from `--resume_from_checkpoint="./logs/Exp1_1/checkpoint-40000"`, then training will automatically restart from step 40,000.
+
 **Experiment 1**
 To delete the specially designed loss, respectively. 5 experiments in total.
 ```
@@ -33,29 +49,30 @@ x for:
 ```
 
 **Experiment 2**
-Delete the grouped 2-3 losses at one time, 11 experiment in total.
+Delete the grouped 2 losses at one time, 10 experiment in total.
 
 ```
 conda activate smile
 bash train_xx.sh
 
 xx for:
-
     train_12.sh  -> without the phase classification loss + organ-wise HU loss 
-    train_15.sh  -> without the phase classification loss + boundary loss
-    train_25.sh  -> without the organ-wise HU loss + boundary loss
-    train_125.sh -> without the phase classification loss + organ-wise HU loss + boundary loss
-
     train_13.sh  -> without the phase classification loss + segmentation mask loss
-    train_23.sh  -> without the organ-wise HU loss + segmentation mask loss
-    train_53.sh  -> without the boundary loss + segmentation loss
-
     train_14.sh  -> without the phase classification loss + cycle consistency loss
+    train_15.sh  -> without the phase classification loss + boundary loss
+
+    train_23.sh  -> without the organ-wise HU loss + segmentation mask loss
     train_24.sh  -> without the organ-wise HU loss + cycle
-    train_54.sh  -> without the boundary + cycle
-    
+    train_25.sh  -> without the organ-wise HU loss + boundary loss
+
     train_34.sh  -> without the segmentation mask loss + cycle consistency loss 
+    train_35.sh  -> without the boundary loss + segmentation loss
+
+    train_45.sh  -> without the boundary + cycle
+
 ```
+~~train_125.sh -> without the phase classification loss + organ-wise HU loss + boundary loss~~
+
 ## Create environment
 ```
 conda create -n smile python=3.11
@@ -83,7 +100,6 @@ huggingface-cli download MitakaKuma/SMILE --include="segmenter/*" --local-dir=".
 ```
 huggingface-cli download MitakaKuma/SMILE --include="classifier/*" --local-dir="./"
 ```
-
 
 ## Download dataset (Dataset905) *(~ 38GB)*
 ```
