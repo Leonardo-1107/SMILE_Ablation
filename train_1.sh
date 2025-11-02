@@ -12,7 +12,7 @@ export SEG_MODEL_NAME="./segmenter/nnUNetTrainer__nnUNetResEncUNetLPlans__2d"
 export CLS_MODEL_NAME="./classifier/monai_cls.pth" 
 
 # Temporary path with soft link
-export TRAIN_DATA_DIR="../Data/Dataset905_xinze/PT_H5" 
+export TRAIN_DATA_DIR="./Dataset905" 
 export TRAIN_DATA_SHAPE_EXCEL_DIR="./dataset_xinze2/step3-shapes-filtered.csv"
 
 # output location
