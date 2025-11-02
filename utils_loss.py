@@ -280,11 +280,21 @@ def step6_loss(
         composite_loss = uncertainty_loss_module([cls_loss, seg_loss, hu_avg_loss])
         total_loss = diffusion_loss + uc_area_lambda*unchanged_loss + cls_lambda * composite_loss + cycle_lambda * cycle_loss
 
+        # add safety-check
+        if torch.isnan(total_loss) or torch.isinf(total_loss):
+            return (# fall back
+                diffusion_loss +
+                uc_area_lambda * unchanged_loss +
+                cls_lambda * cls_loss +
+                seg_dsc_lambda * seg_loss +
+                hu_mse_lambda * hu_avg_loss +
+                cycle_lambda * cycle_loss
+            )
         return total_loss
     
     else:
         total_loss = (
-            diffusion_lambda * diffusion_loss +
+            diffusion_loss +
             uc_area_lambda * unchanged_loss +
             cls_lambda * cls_loss +
             seg_dsc_lambda * seg_loss +
