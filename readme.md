@@ -34,6 +34,9 @@ export OUTPUT_DIR="./logs/Exp1_1"   # Each experiment should have a unique folde
 <mark>Important:</mark> If `--init_global_step` is not set, the script will automatically continue from the step recorded in the checkpoint.
 For example, if you resume from `--resume_from_checkpoint="./logs/Exp1_1/checkpoint-40000"`, then training will automatically restart from step 40,000.
 
+<mark>Important:</mark> The checkpoints are expected to be saved every `checkpointing_steps`, which is set to `10,000` by default.
+
+
 **Experiment 1**
 To delete the specially designed loss, respectively. 5 experiments in total.
 ```
