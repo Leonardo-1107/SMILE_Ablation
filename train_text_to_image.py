@@ -1506,10 +1506,17 @@ def main():
                     loss = F.mse_loss(model_pred.float(), target.float(), reduction="none")
                     loss = loss.mean(dim=list(range(1, len(loss.shape)))) * mse_loss_weights
                     loss = loss.mean()
-
+                
                 # Gather the losses across all processes for logging (if we use distributed training).
                 avg_loss = accelerator.gather(loss.repeat(args.train_batch_size)).mean()
                 train_loss += avg_loss.item() / args.gradient_accumulation_steps
+
+                # NaN protection
+                if torch.isnan(avg_loss) or torch.isinf(avg_loss):
+                    if accelerator.is_main_process:
+                        print(f"[⚠️ Warning] Skipping step {global_step}: loss is NaN or Inf ({avg_loss.item()}).")
+                    optimizer.zero_grad(set_to_none=True)
+                    continue  # skip this batch safely
 
                 # Backpropagate
                 accelerator.backward(loss)
