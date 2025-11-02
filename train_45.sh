@@ -43,7 +43,7 @@ accelerate launch --mixed_precision="no" --num_processes=1 train_text_to_image.p
   --warmup_end_df_only=2000 \
   --warmup_end_add_cls=10000 \
   --warmup_end_add_cls_seg_hu=15000 \
-  --warmup_end_add_cycle=80000 \
+  --warmup_end_add_cycle=96000 \
   --uc_area_loss_weight=0 \
   --cls_loss_weight=1e-3 \
   --seg_loss_weight=1e-3 \
