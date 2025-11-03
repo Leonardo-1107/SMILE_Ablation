@@ -1510,7 +1510,7 @@ def main():
                 # NaN protection and clear the cache
                 if torch.isnan(loss) or torch.isinf(loss):
                     if accelerator.is_main_process:
-                        print(f"[⚠️ Warning] Skipping step {global_step}: loss is NaN or Inf ({avg_loss.item()}).")
+                        print(f"[⚠️ Warning] Skipping step {global_step}: loss is NaN or Inf ({loss.item()}).")
                     optimizer.zero_grad(set_to_none=True)
 
                     del loss  # remove reference to the loss tensor
