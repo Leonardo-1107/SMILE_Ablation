@@ -163,8 +163,10 @@ def segmentation_loss(batch, pred_logits, estimated_image, use_gt_mask=False):
         
     seg_loss_fn = torch.nn.CrossEntropyLoss(ignore_index=0, reduction="mean") # still CE
     eff_seg_loss = seg_loss_fn(pred_logits, cond_mask) 
+    # add safecheck
+    if torch.isnan(eff_seg_loss) or torch.isinf(eff_seg_loss):
+        eff_seg_loss = torch.tensor(0.0, device=estimated_image.device)
     return eff_seg_loss
-
 
 
 def classification_loss(classify_logits, gt_phase, repeat_channel=False):
